@@ -5,20 +5,17 @@ using UnityEngine;
 public class noteController : MonoBehaviour
 {
 
-    public GameObject[] notes;
+    [SerializeField] int noteSpeed;
 
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 0; i < transform.childCount; i++)
-        {
-            notes[i] = GetComponentInChildren<GameObject>();
-        }
+      
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
+        transform.Translate(0, -(noteSpeed * Time.deltaTime), 0);
     }
 }
