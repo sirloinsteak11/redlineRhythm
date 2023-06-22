@@ -7,6 +7,8 @@ public class audioController : MonoBehaviour
 {
 
     public float currentSongBPM, secPerBeat, songPosition, songPositionInBeats, dspSongTime, songBPM1, songBPM2;
+    private float offsetInSec;
+    [SerializeField] int songOffset1, songOffset2;
     public Button exceeder;
     public Button ramune;
     public AudioSource musicSource;
@@ -28,7 +30,18 @@ public class audioController : MonoBehaviour
     void FixedUpdate()
     {
         songPosition = (float)(AudioSettings.dspTime - dspSongTime);
-        songPositionInBeats = songPosition / secPerBeat;
+
+        if (musicSource.clip == firstSong)
+        {
+            offsetInSec = (float)(songOffset1 / 1000f);
+            songPositionInBeats = (songPosition - offsetInSec) / secPerBeat;
+        }
+
+        if (musicSource.clip == otherSong)
+        {
+            offsetInSec = (float)(songOffset2 / 1000f);
+            songPositionInBeats = (songPosition - offsetInSec) / secPerBeat;
+        }
     }
 
     void changeRamune() {

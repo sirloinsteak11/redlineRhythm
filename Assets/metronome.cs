@@ -6,7 +6,7 @@ public class metronome : MonoBehaviour
 {
 
     public audioController audioController;
-    public SpriteRenderer renderer;
+    public new SpriteRenderer renderer;
 
     // Start is called before the first frame update
     void Start()
